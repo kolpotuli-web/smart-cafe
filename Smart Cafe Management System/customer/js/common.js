@@ -31,19 +31,25 @@ window.SmartCafeCommon = {
   },
   itemUnitPrice(item) {
     let price = Number(item && item.price);
+    const menu = window.SmartCafeData && Array.isArray(window.SmartCafeData.menu)
+      ? window.SmartCafeData.menu
+      : [];
+    const menuItem = menu.find(menuEntry => String(menuEntry.id) === String(item && item.id));
 
     if (!Number.isFinite(price) || price < 0) {
-      const menu = window.SmartCafeData && Array.isArray(window.SmartCafeData.menu)
-        ? window.SmartCafeData.menu
-        : [];
-      const menuItem = menu.find(menuEntry => String(menuEntry.id) === String(item && item.id));
       price = menuItem ? Number(menuItem.price) : Number(item && item.unitPrice);
     }
-
     if (!Number.isFinite(price) || price < 0) price = 0;
 
-    if (item && item.size === 'Medium') price += 20;
-    if (item && item.size === 'Large') price += 40;
+    const size = String(item && item.size || 'Regular');
+    let sizeCharge;
+    if (menuItem && Array.isArray(menuItem.sizes)) {
+      const sizeOption = menuItem.sizes.find(option => String(option[0]) === size);
+      sizeCharge = sizeOption ? Number(sizeOption[1]) : 0;
+    } else {
+      sizeCharge = size === 'Medium' ? 20 : size === 'Large' ? 40 : 0;
+    }
+    if (Number.isFinite(sizeCharge) && sizeCharge > 0) price += sizeCharge;
 
     (item && Array.isArray(item.extras) ? item.extras : []).forEach(extra => {
       const extraPrice = Number(extra && extra.price);
@@ -69,7 +75,7 @@ window.SmartCafeCommon = {
         return {
           name: item.name || 'Menu Item',
           quantity,
-          size: item.size || 'Small',
+          size: item.size || 'Regular',
           extras: Array.isArray(item.extras) ? item.extras : [],
           instructions: item.instructions || '',
           unitPrice,
