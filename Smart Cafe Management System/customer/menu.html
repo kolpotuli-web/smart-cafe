@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartCafe | Menu</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    body{margin:0;background:#f8f5ef;color:#18243a;font-family:Arial,sans-serif}.wrap{max-width:1180px;margin:auto;padding:28px 20px}.top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:24px}.brand{font-size:28px;font-weight:800}.pill{background:#fff;border:1px solid #e5ded2;border-radius:999px;padding:10px 14px}.tools{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}.tools input{flex:1;min-width:220px;padding:13px 16px;border:1px solid #ddd4c7;border-radius:12px;font-size:15px}.cats{display:flex;gap:8px;overflow:auto;padding-bottom:8px}.cat{border:1px solid #ddd4c7;background:#fff;padding:10px 15px;border-radius:999px;cursor:pointer}.cat.active,.primary{background:#e88924;color:#fff;border-color:#e88924}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}.food{background:#fff;border:1px solid #e7e0d5;border-radius:18px;overflow:hidden;box-shadow:0 5px 18px #18243a12}.food img{width:100%;height:180px;object-fit:cover}.food-body{padding:17px}.food h3{margin:0 0 6px}.desc{color:#697386;min-height:42px;line-height:1.45}.row{display:flex;justify-content:space-between;align-items:center;gap:10px}.price{font-weight:800;font-size:18px}.btn{border:0;border-radius:10px;padding:11px 15px;cursor:pointer;font-weight:700}.empty{text-align:center;padding:50px;background:#fff;border-radius:18px}.cart-link{color:inherit;text-decoration:none;font-weight:700}@media(max-width:600px){.top{align-items:flex-start}.brand{font-size:24px}.food img{height:160px}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top"><div><div class="brand">☕ SmartCafe</div><div>Freshly prepared for <span id="table" class="pill">Table --</span></div></div><a class="cart-link pill" href="cart.html">🛒 Cart <span id="count">0</span></a></header>
+  <section class="tools"><input id="search" type="search" placeholder="Search coffee, snacks, meals..." aria-label="Search menu"></section>
+  <div id="cats" class="cats"></div>
+  <main id="menu" class="grid" aria-live="polite"></main>
+</div>
+<script src="js/data.js"></script><script src="js/common.js"></script>
+<script>
+const items=window.SmartCafeData.menu;let category='All';
+function render(){const q=document.getElementById('search').value.toLowerCase().trim();const filtered=items.filter(x=>(category==='All'||x.category===category)&&(!q||(`${x.name} ${x.description} ${x.category}`).toLowerCase().includes(q)));document.getElementById('menu').innerHTML=filtered.length?filtered.map(x=>`<article class="food"><img src="${x.image||'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80'}" alt="${x.name}" loading="lazy"><div class="food-body"><h3>${x.name}</h3><div class="desc">${x.description}</div><div class="row"><span class="price">₹${x.price}</span><button class="btn primary" onclick="add(${x.id})">Customize</button></div></div></article>`).join(''):'<div class="empty"><h2>No items found</h2><p>Try another category or search.</p></div>';}
+function add(id){const x=items.find(i=>i.id===id);const cart=window.SmartCafeCommon.getCart();cart.push({cartId:Date.now(),id:x.id,name:x.name,price:x.price,image:x.image||'',size:'Small',extras:[],instructions:'',quantity:1});window.SmartCafeCommon.setCart(cart);update();location.href='cart.html';}
+function update(){document.getElementById('count').textContent=window.SmartCafeCommon.cartCount();document.getElementById('table').textContent='Table '+window.SmartCafeCommon.getTable();}
+const cats=['All',...new Set(items.map(x=>x.category))];document.getElementById('cats').innerHTML=cats.map(c=>`<button class="cat ${c==='All'?'active':''}" onclick="category='${c}';document.querySelectorAll('.cat').forEach(b=>b.classList.remove('active'));this.classList.add('active');render()">${c}</button>`).join('');document.getElementById('search').addEventListener('input',render);update();render();
+</script>
+</body></html>
