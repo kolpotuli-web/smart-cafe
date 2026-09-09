@@ -1,0 +1,6 @@
+/* SmartCafe customer stylesheet entry point.
+   The existing stylesheet was uploaded with a .cs extension.
+   Keep the original file untouched while providing the standard CSS filename
+   already referenced by customer/index.html.
+*/
+@import url("style.cs");
