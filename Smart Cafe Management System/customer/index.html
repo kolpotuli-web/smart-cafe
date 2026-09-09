@@ -7,59 +7,10 @@
   <title>SmartCafe | Customer</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/components.css">
-  <style>
-    body{margin:0;background:#f8f5ef;color:#18243a;font-family:Arial,Helvetica,sans-serif}.shell{max-width:1180px;margin:auto;padding:0 20px}.topbar{position:sticky;top:0;z-index:10;background:#fffdf9;border-bottom:1px solid #e5ded2}.topbar-inner{min-height:72px;display:flex;align-items:center;gap:24px}.brand{font-size:25px;font-weight:800;color:#18243a;white-space:nowrap}.brand span{color:#e88924}.nav{display:flex;gap:18px;flex:1;align-items:center}.nav a{color:#596477;text-decoration:none;font-weight:700;font-size:14px}.nav a:hover{color:#e88924}.cart{margin-left:auto;text-decoration:none;background:#18243a;color:#fff;padding:10px 14px;border-radius:10px;font-weight:800}.cart span{display:inline-flex;min-width:20px;justify-content:center;margin-left:5px;padding:1px 5px;border-radius:999px;background:#e88924}.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center;padding:75px 0 55px}.eyebrow{font-size:12px;font-weight:800;letter-spacing:2px;color:#bd6814;margin:0 0 12px}.hero h1{font-size:clamp(48px,7vw,78px);line-height:.98;letter-spacing:-3px;color:#18243a;margin:0 0 22px}.hero p{max-width:600px;color:#697386;font-size:18px;line-height:1.7}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{display:inline-block;border:0;border-radius:11px;padding:13px 18px;text-decoration:none;font-weight:800;cursor:pointer}.primary{background:#e88924;color:#fff}.secondary{background:#fff;border:1px solid #ddd4c7;color:#18243a}.hero-card{background:#18243a;color:#fff;border-radius:26px;padding:34px;min-height:300px;box-shadow:0 22px 60px rgba(24,36,58,.18);display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden}.hero-card:before{content:"";position:absolute;width:220px;height:220px;border-radius:50%;right:-70px;top:-70px;background:rgba(232,137,36,.22)}.hero-card>*{position:relative}.table-pill{display:inline-flex;width:max-content;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:7px 11px;border-radius:999px;font-size:12px}.hero-card h2{font-size:30px;margin:18px 0 8px}.hero-card p{color:#cbd3df;font-size:14px;margin:0}.section{padding:25px 0 70px}.section h2{font-size:32px;margin:0 0 22px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:#fff;border:1px solid #e7e0d5;border-radius:17px;padding:24px;box-shadow:0 5px 18px rgba(24,36,58,.05);text-decoration:none;color:inherit;transition:.18s}.card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(24,36,58,.1);border-color:#d8c7b8}.icon{font-size:26px;margin-bottom:14px}.card h3{margin:0 0 7px}.card p{margin:0;color:#697386;line-height:1.55;font-size:14px}.footer{padding:25px 0 40px;color:#818999;font-size:12px;border-top:1px solid #e5ded2}@media(max-width:850px){.nav{gap:11px;overflow:auto}.nav a{white-space:nowrap}.hero{grid-template-columns:1fr;padding-top:50px}.cards{grid-template-columns:1fr 1fr}}@media(max-width:600px){.topbar-inner{flex-wrap:wrap;padding:13px 0}.nav{order:3;flex-basis:100%}.cart{margin-left:auto}.hero h1{font-size:54px}.cards{grid-template-columns:1fr}}
-  </style>
+  <style>body{margin:0;background:#f8f5ef;color:#18243a;font-family:Arial,Helvetica,sans-serif}.shell{max-width:1180px;margin:auto;padding:0 20px}.topbar{position:sticky;top:0;z-index:10;background:#fffdf9;border-bottom:1px solid #e5ded2}.topbar-inner{min-height:72px;display:flex;align-items:center;gap:24px}.brand{font-size:25px;font-weight:800;color:#18243a;white-space:nowrap;text-decoration:none}.brand span{color:#e88924}.nav{display:flex;gap:18px;flex:1;align-items:center}.nav a{color:#596477;text-decoration:none;font-weight:700;font-size:14px}.nav a:hover{color:#e88924}.cart{margin-left:auto;text-decoration:none;background:#18243a;color:#fff;padding:10px 14px;border-radius:10px;font-weight:800}.cart span{display:inline-flex;min-width:20px;justify-content:center;margin-left:5px;padding:1px 5px;border-radius:999px;background:#e88924}.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center;padding:75px 0 55px}.eyebrow{font-size:12px;font-weight:800;letter-spacing:2px;color:#bd6814;margin:0 0 12px}.hero h1{font-size:clamp(48px,7vw,78px);line-height:.98;letter-spacing:-3px;color:#18243a;margin:0 0 22px}.hero p{max-width:600px;color:#697386;font-size:18px;line-height:1.7}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{display:inline-block;border:0;border-radius:11px;padding:13px 18px;text-decoration:none;font-weight:800;cursor:pointer}.primary{background:#e88924;color:#fff}.secondary{background:#fff;border:1px solid #ddd4c7;color:#18243a}.hero-card{background:#18243a;color:#fff;border-radius:26px;padding:34px;min-height:300px;box-shadow:0 22px 60px rgba(24,36,58,.18);display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden}.hero-card:before{content:"";position:absolute;width:220px;height:220px;border-radius:50%;right:-70px;top:-70px;background:rgba(232,137,36,.22)}.hero-card>*{position:relative}.table-pill{display:inline-flex;width:max-content;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:7px 11px;border-radius:999px;font-size:12px}.hero-card h2{font-size:30px;margin:18px 0 8px}.hero-card p{color:#cbd3df;font-size:14px;margin:0}.section{padding:25px 0 70px}.section h2{font-size:32px;margin:0 0 22px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:#fff;border:1px solid #e7e0d5;border-radius:17px;padding:24px;box-shadow:0 5px 18px rgba(24,36,58,.05);text-decoration:none;color:inherit;transition:.18s}.card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(24,36,58,.1);border-color:#d8c7b8}.icon{font-size:26px;margin-bottom:14px}.card h3{margin:0 0 7px}.card p{margin:0;color:#697386;line-height:1.55;font-size:14px}.footer{padding:25px 0 40px;color:#818999;font-size:12px;border-top:1px solid #e5ded2}@media(max-width:850px){.nav{gap:11px;overflow:auto}.nav a{white-space:nowrap}.hero{grid-template-columns:1fr;padding-top:50px}.cards{grid-template-columns:1fr 1fr}}@media(max-width:600px){.topbar-inner{flex-wrap:wrap;padding:13px 0}.nav{order:3;flex-basis:100%}.cart{margin-left:auto}.hero h1{font-size:54px}.cards{grid-template-columns:1fr}}</style>
 </head>
 <body>
-<header class="topbar">
-  <div class="shell topbar-inner">
-    <div class="brand">Smart<span>Cafe</span></div>
-    <nav class="nav" aria-label="Customer navigation">
-      <a href="index.html">Home</a>
-      <a href="menu.html" id="menuLink">Menu</a>
-      <a href="orders.html">My Orders</a>
-    </nav>
-    <a class="cart" href="cart.html">Cart <span id="cartCount">0</span></a>
-  </div>
-</header>
-<main class="shell">
-  <section class="hero">
-    <div>
-      <p class="eyebrow">CUSTOMER ORDERING</p>
-      <h1>Good food.<br>Less waiting.</h1>
-      <p>Browse the cafe menu, customize your food, place an order from your table and follow it from the kitchen to completion.</p>
-      <div class="actions">
-        <a class="btn primary" href="menu.html" id="viewMenu">View Menu</a>
-        <a class="btn secondary" href="orders.html">Track My Orders</a>
-      </div>
-    </div>
-    <aside class="hero-card">
-      <span class="table-pill" id="table">Table 04</span>
-      <h2>Order from your table</h2>
-      <p>Your table number is carried through the prototype using the URL and browser localStorage.</p>
-    </aside>
-  </section>
-  <section class="section">
-    <h2>Quick Access</h2>
-    <div class="cards">
-      <a class="card" href="menu.html" id="menuCard"><div class="icon">Menu</div><h3>Customer Menu</h3><p>Search drinks, snacks, meals and desserts, then add items to your cart.</p></a>
-      <a class="card" href="orders.html"><div class="icon">Orders</div><h3>My Orders</h3><p>Review previous orders and open the live order tracking screen.</p></a>
-      <a class="card" href="cart.html"><div class="icon">Cart</div><h3>My Cart</h3><p>Review quantities, remove items and continue to checkout.</p></a>
-    </div>
-  </section>
-  <div class="footer">SmartCafe frontend prototype · HTML5 · CSS3 · vanilla JavaScript · localStorage</div>
-</main>
-<script src="js/data.js"></script>
-<script src="js/common.js"></script>
-<script>
-  const table=window.SmartCafeCommon.getTable();
-  document.getElementById('table').textContent='Table '+table;
-  const target='menu.html?table='+encodeURIComponent(table);
-  document.getElementById('viewMenu').href=target;
-  document.getElementById('menuLink').href=target;
-  document.getElementById('menuCard').href=target;
-  document.getElementById('cartCount').textContent=window.SmartCafeCommon.cartCount();
-</script>
-</body>
-</html>
+<header class="topbar"><div class="shell topbar-inner"><a class="brand" href="../../index.html" aria-label="Return to SmartCafe main page">Smart<span>Cafe</span></a><nav class="nav" aria-label="Customer navigation"><a href="index.html">Home</a><a href="menu.html" id="menuLink">Menu</a><a href="orders.html">My Orders</a></nav><a class="cart" href="cart.html">Cart <span id="cartCount">0</span></a></div></header>
+<main class="shell"><section class="hero"><div><p class="eyebrow">CUSTOMER ORDERING</p><h1>Good food.<br>Less waiting.</h1><p>Browse the cafe menu, customize your food, place an order from your table and follow it from the kitchen to completion.</p><div class="actions"><a class="btn primary" href="menu.html" id="viewMenu">View Menu</a><a class="btn secondary" href="orders.html">Track My Orders</a></div></div><aside class="hero-card"><span class="table-pill" id="table">Table 04</span><h2>Order from your table</h2><p>Your table number is carried through the prototype using the URL and browser localStorage.</p></aside></section><section class="section"><h2>Quick Access</h2><div class="cards"><a class="card" href="menu.html" id="menuCard"><div class="icon">Menu</div><h3>Customer Menu</h3><p>Search drinks, snacks, meals and desserts, then add items to your cart.</p></a><a class="card" href="orders.html"><div class="icon">Orders</div><h3>My Orders</h3><p>Review previous orders and open the live order tracking screen.</p></a><a class="card" href="cart.html"><div class="icon">Cart</div><h3>My Cart</h3><p>Review quantities, remove items and continue to checkout.</p></a></div></section><div class="footer">SmartCafe frontend prototype · HTML5 · CSS3 · vanilla JavaScript · localStorage</div></main>
+<script src="js/data.js"></script><script src="js/common.js"></script><script>const table=window.SmartCafeCommon.getTable();document.getElementById('table').textContent='Table '+table;const target='menu.html?table='+encodeURIComponent(table);document.getElementById('viewMenu').href=target;document.getElementById('menuLink').href=target;document.getElementById('menuCard').href=target;document.getElementById('cartCount').textContent=window.SmartCafeCommon.cartCount();</script>
+</body></html>
