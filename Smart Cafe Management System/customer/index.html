@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartCafe - Cafe Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="topbar">
+        <div class="logo">
+            <span>SmartCafe</span>
+        </div>
+
+        <nav>
+            <a href="#" onclick="showPage('home')">Home</a>
+            <a href="#" onclick="showPage('menu')">Menu</a>
+            <a href="#" onclick="showPage('orders')">My Orders</a>
+            <a href="#" onclick="showPage('kitchen')">Kitchen</a>
+            <a href="#" onclick="showPage('admin')">Admin</a>
+        </nav>
+
+        <button class="cart-btn" onclick="openCart()">
+            Cart <span id="cartCount">0</span>
+        </button>
+    </header>
+
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- HOME PAGE -->
+        <section id="home" class="page active">
+
+            <div class="welcome-section">
+                <div>
+                    <p class="small-title">WELCOME TO</p>
+                    <h1>SmartCafe</h1>
+
+                    <p>
+                        A smart cafe management system for customers,
+                        kitchen staff and administrators.
+                    </p>
+
+                    <button class="primary-btn" onclick="showPage('menu')">
+                        View Menu
+                    </button>
+                </div>
+
+                <div class="welcome-box">
+                    <h3>Table 04</h3>
+                    <p>Scan, order and track your food digitally.</p>
+                </div>
+            </div>
+
+
+            <div class="section-title">
+                <h2>Quick Access</h2>
+            </div>
+
+            <div class="quick-grid">
+
+                <div class="quick-card" onclick="showPage('menu')">
+                    <h3>Customer Menu</h3>
+                    <p>Browse food and beverages and add items to your cart.</p>
+                </div>
+
+                <div class="quick-card" onclick="showPage('orders')">
+                    <h3>Order Tracking</h3>
+                    <p>Track the current status of your order.</p>
+                </div>
+
+                <div class="quick-card" onclick="showPage('kitchen')">
+                    <h3>Kitchen Display</h3>
+                    <p>Manage incoming orders and update their status.</p>
+                </div>
+
+                <div class="quick-card" onclick="showPage('admin')">
+                    <h3>Admin Dashboard</h3>
+                    <p>View sales, orders and inventory information.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MENU PAGE -->
+        <section id="menu" class="page">
+
+            <div class="page-header">
+                <div>
+                    <p class="small-title">CUSTOMER</p>
+                    <h1>Menu</h1>
+                </div>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search menu..."
+                    onkeyup="searchMenu()"
+                >
+            </div>
+
+
+            <div class="category-bar">
+
+                <button
+                    class="category-btn active"
+                    onclick="filterCategory('all', this)">
+                    All
+                </button>
+
+                <button
+                    class="category-btn"
+                    onclick="filterCategory('coffee', this)">
+                    Coffee
+                </button>
+
+                <button
+                    class="category-btn"
+                    onclick="filterCategory('food', this)">
+                    Food
+                </button>
+
+                <button
+                    class="category-btn"
+                    onclick="filterCategory('dessert', this)">
+                    Dessert
+                </button>
+
+                <button
+                    class="category-btn"
+                    onclick="filterCategory('drink', this)">
+                    Drinks
+                </button>
+
+            </div>
+
+
+            <div class="menu-grid" id="menuGrid">
+
+                <div class="product-card" data-category="coffee">
+                    <div class="product-image coffee-bg">
+                        Coffee
+                    </div>
+
+                    <div class="product-info">
+                        <h3>Cappuccino</h3>
+                        <p>Espresso with steamed milk and foam.</p>
+
+                        <div class="product-bottom">
+                            <strong>₹120</strong>
+
+                            <button
+                                onclick="addToCart('Cappuccino', 120)">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="product-card" data-category="coffee">
+                    <div class="product-image coffee-bg">
+                        Coffee
+                    </div>
+
+                    <div class="product-info">
+                        <h3>Cafe Latte</h3>
+                        <p>Smooth espresso with steamed milk.</p>
+
+                        <div class="product-bottom">
+                            <strong>₹140</strong>
+
+                            <button
+                                onclick="addToCart('Cafe Latte', 140)">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="product-card" data-category="coffee">
+                    <div class="product-image coffee-bg">
+                        Coffee
+                    </div>
+
+                    <div class="product-info">
+                        <h3>Cold Coffee</h3>
+                        <p>Cold blended coffee with milk.</p>
+
+                        <div class="product-bottom">
+                            <strong>₹150</strong>
+
+                            <button
+                                onclick="addToCart('Cold Coffee', 150)">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="product-card" data-category="food">
+                    <div class="product-image food-bg">
+                        Food
+                    </div>
+
+                    <div class="product-info">
+                        <h3>Veg Burger</h3>
+                        <p>Fresh vegetable patty with vegetables.</p>
+
+                        <div class="product-bottom">
+                            <strong>₹160</strong>
+
+                            <button
+                                onclick="addToCart('Veg Burger', 160)">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="product-card" data-category="food">
+                    <div class="product-image food-bg">
+                        Food
+                    </div>
+
+                    <div class="product-info">
+                        <h3>Veg Sandwich</h3>
+                        <p>Grilled sandwich with fresh vegetables.</p>
+
+                        <div class="product-bottom">
+                            <strong>₹130</strong>
+
+                            <button
+                                onclick="addToCart('Veg Sandwich', 130)">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="product-card" data-category="food">
+                    <div class="product-image food-bg">
+                        Food
+                    </div>
+
+                    <div class="product-info">
+                        <h3>French Fries</h3>
+                        <p>Crispy golden potato fries.</p>
+
+                        <div class="product-bottom">
+                            <strong>₹100</strong>
+
+                            <button
+                                onclick="addToCart('French Fries', 100)">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="product-card" data-category="dessert">
+                    <div class="product-image dessert-bg">
+                        Dessert
+                    </div>
+
+                    <div class="product-info">
+                        <h3>Chocolate Cake</h3>
+                        <p>Soft chocolate cake with cream.</p>
+
+                        <div class="product-bottom">
+                            <strong>₹180</strong>
+
+                            <button
+                                onclick="addToCart('Chocolate Cake', 180)">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="product-card" data-category="dessert">
+                    <div class="product-image dessert-bg">
+                        Dessert
+                    </div>
+
+                    <div class="product-info">
+                        <h3>Chocolate Brownie</h3>
+                        <p>Rich chocolate brownie.</p>
+
+                        <div class="product-bottom">
+                            <strong>₹150</strong>
+
+                            <button
+                                onclick="addToCart('Chocolate Brownie', 150)">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="product-card" data-category="drink">
+                    <div class="product-image drink-bg">
+                        Drink
+                    </div>
+
+                    <div class="product-info">
+                        <h3>Fresh Lime Soda</h3>
+                        <p>Refreshing lime soda.</p>
+
+                        <div class="product-bottom">
+                            <strong>₹90</strong>
+
+                            <button
+                                onclick="addToCart('Fresh Lime Soda', 90)">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ORDERS PAGE -->
+        <section id="orders" class="page">
+
+            <div class="page-header">
+                <div>
+                    <p class="small-title">CUSTOMER</p>
+                    <h1>My Orders</h1>
+                </div>
+            </div>
+
+
+            <div class="order-card">
+
+                <div class="order-top">
+                    <div>
+                        <h2 id="currentOrderNumber">Order #SC1025</h2>
+                        <p>Table 04</p>
+                    </div>
+
+                    <span class="status preparing">
+                        Preparing
+                    </span>
+                </div>
+
+
+                <div class="progress-container">
+
+                    <div class="progress-step completed">
+                        <div class="circle">1</div>
+                        <p>Order Placed</p>
+                    </div>
+
+                    <div class="progress-line"></div>
+
+                    <div class="progress-step active-step">
+                        <div class="circle">2</div>
+                        <p>Preparing</p>
+                    </div>
+
+                    <div class="progress-line"></div>
+
+                    <div class="progress-step">
+                        <div class="circle">3</div>
+                        <p>Ready</p>
+                    </div>
+
+                </div>
+
+
+                <div class="order-items">
+
+                    <div class="order-item">
+                        <span>Cappuccino x 2</span>
+                        <strong>₹240</strong>
+                    </div>
+
+                    <div class="order-item">
+                        <span>Veg Burger x 1</span>
+                        <strong>₹160</strong>
+                    </div>
+
+                    <div class="order-item">
+                        <span>French Fries x 1</span>
+                        <strong>₹100</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="order-total">
+                    <span>Total</span>
+                    <strong>₹500</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- KITCHEN PAGE -->
+        <section id="kitchen" class="page kitchen-page">
+
+            <div class="page-header dark-header">
+                <div>
+                    <p class="small-title">STAFF</p>
+                    <h1>Kitchen Display</h1>
+                </div>
+
+                <span class="live-status">
+                    System Active
+                </span>
+            </div>
+
+
+            <div class="kitchen-grid">
+
+                <div class="kitchen-card">
+
+                    <div class="kitchen-card-top">
+                        <div>
+                            <h2>#SC1025</h2>
+                            <p>Table 04</p>
+                        </div>
+
+                        <span class="kitchen-status preparing-status">
+                            Preparing
+                        </span>
+                    </div>
+
+                    <div class="kitchen-items">
+                        <p>Cappuccino x 2</p>
+                        <p>Veg Burger x 1</p>
+                        <p>French Fries x 1</p>
+                    </div>
+
+                    <button
+                        class="kitchen-btn ready-btn"
+                        onclick="makeReady(this)">
+                        Mark Ready
+                    </button>
+
+                </div>
+
+
+                <div class="kitchen-card">
+
+                    <div class="kitchen-card-top">
+                        <div>
+                            <h2>#SC1024</h2>
+                            <p>Table 02</p>
+                        </div>
+
+                        <span class="kitchen-status new-status">
+                            New
+                        </span>
+                    </div>
+
+                    <div class="kitchen-items">
+                        <p>Cafe Latte x 1</p>
+                        <p>Veg Sandwich x 2</p>
+                    </div>
+
+                    <button
+                        class="kitchen-btn start-btn"
+                        onclick="startOrder(this)">
+                        Start Preparing
+                    </button>
+
+                </div>
+
+
+                <div class="kitchen-card">
+
+                    <div class="kitchen-card-top">
+                        <div>
+                            <h2>#SC1023</h2>
+                            <p>Table 07</p>
+                        </div>
+
+                        <span class="kitchen-status ready-status">
+                            Ready
+                        </span>
+                    </div>
+
+                    <div class="kitchen-items">
+                        <p>Cold Coffee x 2</p>
+                        <p>Chocolate Brownie x 1</p>
+                    </div>
+
+                    <button
+                        class="kitchen-btn complete-btn"
+                        onclick="completeOrder(this)">
+                        Complete Order
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ADMIN PAGE -->
+        <section id="admin" class="page">
+
+            <div class="page-header">
+                <div>
+                    <p class="small-title">ADMINISTRATION</p>
+                    <h1>Dashboard</h1>
+                </div>
+
+                <button
+                    class="secondary-btn"
+                    onclick="refreshDashboard()">
+                    Refresh
+                </button>
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <p>Total Orders</p>
+                    <h2 id="totalOrders">128</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Today's Sales</p>
+                    <h2 id="todaySales">₹18,450</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Active Orders</p>
+                    <h2 id="activeOrders">12</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Low Stock</p>
+                    <h2 id="lowStock">4</h2>
+                </div>
+
+            </div>
+
+
+            <div class="admin-section">
+
+                <div class="section-heading">
+                    <h2>Recent Orders</h2>
+                </div>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Order</th>
+                                <th>Table</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>#SC1025</td>
+                                <td>04</td>
+                                <td>₹500</td>
+                                <td>Preparing</td>
+                            </tr>
+
+                            <tr>
+                                <td>#SC1024</td>
+                                <td>02</td>
+                                <td>₹400</td>
+                                <td>New</td>
+                            </tr>
+
+                            <tr>
+                                <td>#SC1023</td>
+                                <td>07</td>
+                                <td>₹450</td>
+                                <td>Ready</td>
+                            </tr>
+
+                            <tr>
+                                <td>#SC1022</td>
+                                <td>03</td>
+                                <td>₹320</td>
+                                <td>Completed</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-section">
+
+                <div class="section-heading">
+                    <h2>Inventory</h2>
+                </div>
+
+                <div class="inventory-grid">
+
+                    <div class="inventory-card">
+                        <h3>Coffee Beans</h3>
+                        <p>Stock: 12 kg</p>
+                        <span class="stock good">Available</span>
+                    </div>
+
+                    <div class="inventory-card">
+                        <h3>Milk</h3>
+                        <p>Stock: 8 litres</p>
+                        <span class="stock good">Available</span>
+                    </div>
+
+                    <div class="inventory-card">
+                        <h3>Chocolate</h3>
+                        <p>Stock: 2 kg</p>
+                        <span class="stock low">Low Stock</span>
+                    </div>
+
+                    <div class="inventory-card">
+                        <h3>Bread</h3>
+                        <p>Stock: 3 packets</p>
+                        <span class="stock low">Low Stock</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- CART MODAL -->
+    <div id="cartModal" class="modal">
+
+        <div class="cart-box">
+
+            <div class="cart-header">
+                <h2>Your Cart</h2>
+
+                <button
+                    class="close-btn"
+                    onclick="closeCart()">
+                    X
+                </button>
+            </div>
+
+
+            <div id="cartItems"></div>
+
+
+            <div class="cart-footer">
+
+                <div class="cart-total">
+                    <span>Total</span>
+                    <strong id="cartTotal">₹0</strong>
+                </div>
+
+                <button
+                    class="primary-btn full-btn"
+                    onclick="placeOrder()">
+                    Place Order
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        Item added to cart
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
