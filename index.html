@@ -28,7 +28,7 @@
         .footer-note { text-align:center; padding:18px; color:#858b94; font-size:12px; border-top:1px solid var(--line); }
         .modal { position:fixed; inset:0; background:rgba(7,14,25,.68); display:none; align-items:center; justify-content:center; padding:20px; z-index:20; } .modal.open { display:flex; }
         .login-box { width:min(470px,100%); background:white; border-radius:20px; padding:30px; box-shadow:0 25px 80px rgba(0,0,0,.25); } .login-box h2 { margin:0 0 7px; font-size:30px; } .login-box>p { color:var(--muted); margin:0 0 24px; }
-        .roles { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:18px; } .role { border:1px solid var(--line); background:#fff; border-radius:10px; padding:12px 7px; cursor:pointer; font-size:12px; font-weight:700; } .role.active { border-color:var(--amber); background:#fff7ec; color:var(--amber-dark); }
+        .roles { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:18px; } .role { border:1px solid var(--line); background:#fff; border-radius:10px; padding:12px 7px; cursor:pointer; font-size:12px; font-weight:700; } .role.active { border-color:var(--amber); background:#fff7ec; color:var(--amber-dark); }
         .field { margin-bottom:13px; } .field label { display:block; font-size:12px; font-weight:800; margin-bottom:6px; } .field input { width:100%; padding:13px; border:1px solid var(--line); border-radius:9px; outline:none; } .field input:focus { border-color:var(--amber); }
         .login-actions { display:flex; gap:10px; margin-top:20px; } .login-actions .btn { flex:1; } .hint { margin-top:16px; padding:12px; border-radius:10px; background:#f5f6f8; color:var(--muted); font-size:12px; line-height:1.5; }
         @media (max-width:850px) { .hero { grid-template-columns:1fr; padding:48px 6%; } .visual { min-height:360px; } h1 { letter-spacing:-2px; } }
@@ -55,22 +55,22 @@
 </div>
 <div class="modal" id="loginModal" aria-hidden="true">
     <div class="login-box" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
-        <h2 id="loginTitle">Staff access</h2><p>Choose a demo role to continue.</p>
-        <div class="roles"><button class="role" data-role="kitchen" onclick="selectRole('kitchen')">Kitchen Staff</button><button class="role" data-role="admin" onclick="selectRole('admin')">Admin / Owner</button><button class="role" data-role="customer" onclick="selectRole('customer')">Customer</button></div>
-        <div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="email" placeholder="demo@cafemanagement.com"></div>
+        <h2 id="loginTitle">Staff access</h2><p>Choose a staff role to continue.</p>
+        <div class="roles"><button class="role" data-role="kitchen" onclick="selectRole('kitchen')">Kitchen Staff</button><button class="role" data-role="admin" onclick="selectRole('admin')">Admin / Owner</button></div>
+        <div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="email" placeholder="staff@cafemanagement.com"></div>
         <div class="field"><label for="password">Password</label><input id="password" type="password" placeholder="1234"></div>
         <div class="login-actions"><button class="btn btn-secondary" onclick="closeLogin()">Cancel</button><button class="btn btn-primary" onclick="login()">Continue</button></div>
-        <div class="hint">Demo credentials: customer@smartcafe.com, kitchen@smartcafe.com, or admin@smartcafe.com — password <strong>1234</strong>.</div>
+        <div class="hint">Staff credentials: kitchen@smartcafe.com or admin@smartcafe.com — password <strong>1234</strong>.</div>
     </div>
 </div>
 <script>
-    const roles={customer:{email:'customer@smartcafe.com',path:'Smart Cafe Management System/customer/index.html'},kitchen:{email:'kitchen@smartcafe.com',path:'Smart Cafe Management System/kitchen.html'},admin:{email:'admin@smartcafe.com',path:'Smart Cafe Management System/admin/index.html'}};
-    let selectedRole='customer';
-    function continueAsCustomer(){localStorage.setItem('smartCafeRole','customer');localStorage.setItem('smartCafeTable',localStorage.getItem('smartCafeTable')||'04');window.location.href=roles.customer.path+'?table='+encodeURIComponent(localStorage.getItem('smartCafeTable'));}
+    const roles={kitchen:{email:'kitchen@smartcafe.com',path:'Smart Cafe Management System/kitchen.html'},admin:{email:'admin@smartcafe.com',path:'Smart Cafe Management System/admin/index.html'}};
+    let selectedRole='kitchen';
+    function continueAsCustomer(){localStorage.setItem('smartCafeRole','customer');localStorage.setItem('smartCafeTable',localStorage.getItem('smartCafeTable')||'04');window.location.href='Smart Cafe Management System/customer/index.html?table='+encodeURIComponent(localStorage.getItem('smartCafeTable'));}
     function openLogin(){document.getElementById('loginModal').classList.add('open');document.getElementById('loginModal').setAttribute('aria-hidden','false');selectRole('kitchen');}
     function closeLogin(){document.getElementById('loginModal').classList.remove('open');document.getElementById('loginModal').setAttribute('aria-hidden','true');}
     function selectRole(role){selectedRole=role;document.querySelectorAll('.role').forEach(button=>button.classList.toggle('active',button.dataset.role===role));document.getElementById('email').value=roles[role].email;document.getElementById('password').value='1234';}
-    function login(){const email=document.getElementById('email').value.trim().toLowerCase();const password=document.getElementById('password').value;if(email!==roles[selectedRole].email||password!=='1234'){alert('Demo login failed. Please use the credentials shown below the form.');return;}localStorage.setItem('smartCafeRole',selectedRole);window.location.href=roles[selectedRole].path;}
+    function login(){const email=document.getElementById('email').value.trim().toLowerCase();const password=document.getElementById('password').value;if(email!==roles[selectedRole].email||password!=='1234'){alert('Staff login failed. Please use the staff credentials shown below the form.');return;}localStorage.setItem('smartCafeRole',selectedRole);window.location.href=roles[selectedRole].path;}
     document.getElementById('loginModal').addEventListener('click',event=>{if(event.target.id==='loginModal')closeLogin();});
 </script>
 </body>
