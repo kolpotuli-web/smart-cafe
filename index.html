@@ -14,7 +14,6 @@
         .landing { min-height:100vh; display:flex; flex-direction:column; }
         .landing-header { display:flex; justify-content:space-between; align-items:center; padding:22px 6%; background:var(--navy); color:white; }
         .brand { font-weight:800; font-size:22px; letter-spacing:-.4px; } .brand span { color:#f3a34c; }
-        .demo-badge { font-size:12px; border:1px solid rgba(255,255,255,.25); border-radius:999px; padding:7px 11px; color:#d9e0eb; }
         .hero { flex:1; display:grid; grid-template-columns:1.05fr .95fr; gap:50px; align-items:center; padding:70px 8%; max-width:1400px; width:100%; margin:auto; }
         .eyebrow { color:var(--amber-dark); font-size:12px; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin:0 0 14px; }
         h1 { font-size:clamp(48px,7vw,88px); line-height:.95; letter-spacing:-4px; margin:0 0 25px; color:var(--navy); }
@@ -33,14 +32,13 @@
         .field { margin-bottom:13px; } .field label { display:block; font-size:12px; font-weight:800; margin-bottom:6px; } .field input { width:100%; padding:13px; border:1px solid var(--line); border-radius:9px; outline:none; } .field input:focus { border-color:var(--amber); }
         .login-actions { display:flex; gap:10px; margin-top:20px; } .login-actions .btn { flex:1; } .hint { margin-top:16px; padding:12px; border-radius:10px; background:#f5f6f8; color:var(--muted); font-size:12px; line-height:1.5; }
         @media (max-width:850px) { .hero { grid-template-columns:1fr; padding:48px 6%; } .visual { min-height:360px; } h1 { letter-spacing:-2px; } }
-        @media (max-width:520px) { .landing-header { padding:18px 5%; } .demo-badge { display:none; } .roles { grid-template-columns:1fr; } .login-actions { flex-direction:column; } }
+        @media (max-width:520px) { .landing-header { padding:18px 5%; } .roles { grid-template-columns:1fr; } .login-actions { flex-direction:column; } }
     </style>
 </head>
 <body>
 <div class="landing">
     <header class="landing-header">
         <div class="brand">Cafe <span>Management System</span></div>
-        <div class="demo-badge">FRONTEND PROTOTYPE · DEMO MODE</div>
     </header>
     <main class="hero">
         <section>
