@@ -1,31 +1,389 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SmartCafe | Cart</title>
-<link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/components.css">
-<style>
-body{margin:0;background:#f8f5ef;color:#18243a;font-family:Arial,sans-serif}.wrap{max-width:980px;margin:auto;padding:28px 20px}.top{display:flex;justify-content:space-between;align-items:center}.brand{font-size:25px;font-weight:800;text-decoration:none;color:#18243a}.brand span{color:#e88924}.back{color:#18243a;text-decoration:none;font-weight:700}.card{background:#fff;border:1px solid #e5ded2;border-radius:18px;padding:20px;margin-top:22px}.item{display:grid;grid-template-columns:80px 1fr auto;gap:15px;align-items:center;padding:15px 0;border-bottom:1px solid #eee7dd}.item:last-child{border-bottom:0}.item img{width:80px;height:65px;object-fit:cover;border-radius:12px}.muted{color:#6b7280}.qty{display:flex;align-items:center;gap:10px}.qty button{width:30px;height:30px;border:1px solid #ddd4c7;background:#fff;border-radius:8px;cursor:pointer}.remove{border:0;background:none;color:#b64b35;cursor:pointer}.summary{display:flex;justify-content:space-between;font-size:20px;font-weight:800;margin-top:18px}.actions{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}.btn{padding:12px 17px;border-radius:10px;border:1px solid #ddd4c7;background:#fff;text-decoration:none;color:#18243a;cursor:pointer;font-weight:700}.primary{background:#e88924;color:white;border-color:#e88924}.empty{text-align:center;padding:45px}.note{font-size:13px;color:#6b7280;margin-top:10px}.options{margin-top:5px;font-size:13px;color:#697386;line-height:1.5}@media(max-width:650px){.item{grid-template-columns:60px 1fr}.item>div:last-child{grid-column:2}.item img{width:60px}.actions{flex-direction:column}.actions .btn{text-align:center}}
-</style>
+    <meta charset="utf-8">
+    <meta
+        name="viewport"
+        content="width=device-width,initial-scale=1"
+    >
+
+    <title>SmartCafe | Cart</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+
+    <style>
+        body {
+            margin: 0;
+            background: #f8f5ef;
+            color: #18243a;
+            font-family: Arial, sans-serif;
+        }
+
+        .wrap {
+            max-width: 980px;
+            margin: auto;
+            padding: 28px 20px;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 25px;
+            font-weight: 800;
+            text-decoration: none;
+            color: #18243a;
+        }
+
+        .brand span {
+            color: #e88924;
+        }
+
+        .back {
+            color: #18243a;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #e5ded2;
+            border-radius: 18px;
+            padding: 20px;
+            margin-top: 22px;
+        }
+
+        .item {
+            display: grid;
+            grid-template-columns: 80px 1fr auto;
+            gap: 15px;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee7dd;
+        }
+
+        .item:last-child {
+            border-bottom: 0;
+        }
+
+        .item img {
+            width: 80px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .muted {
+            color: #6b7280;
+        }
+
+        .qty {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .qty button {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ddd4c7;
+            background: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .remove {
+            border: 0;
+            background: none;
+            color: #b64b35;
+            cursor: pointer;
+        }
+
+        .summary {
+            display: flex;
+            justify-content: space-between;
+            font-size: 20px;
+            font-weight: 800;
+            margin-top: 18px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 18px;
+        }
+
+        .btn {
+            padding: 12px 17px;
+            border-radius: 10px;
+            border: 1px solid #ddd4c7;
+            background: #fff;
+            text-decoration: none;
+            color: #18243a;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .primary {
+            background: #e88924;
+            color: white;
+            border-color: #e88924;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 45px;
+        }
+
+        .note {
+            font-size: 13px;
+            color: #6b7280;
+            margin-top: 10px;
+        }
+
+        .options {
+            margin-top: 5px;
+            font-size: 13px;
+            color: #697386;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 650px) {
+            .item {
+                grid-template-columns: 60px 1fr;
+            }
+
+            .item > div:last-child {
+                grid-column: 2;
+            }
+
+            .item img {
+                width: 60px;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .actions .btn {
+                text-align: center;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<div class="wrap">
-<header class="top"><div><a class="brand" href="../../index.html" aria-label="Return to SmartCafe main page">Smart<span>Cafe</span></a><div class="muted">Table <strong id="table"></strong></div></div><a class="back" href="menu.html">Back to menu</a></header>
-<section class="card"><h1>Your Cart</h1><div id="items"></div><div id="footer"></div></section>
-</div>
-<script src="js/data.js"></script><script src="js/common.js"></script>
-<script>
-function render(){
-  const cart=SmartCafeCommon.getCart();
-  document.getElementById('table').textContent=SmartCafeCommon.getTable();
-  if(!cart.length){document.getElementById('items').innerHTML='<div class="empty"><h2>Your cart is empty</h2><p class="muted">Add something from the menu.</p><a class="btn primary" href="menu.html">Browse Menu</a></div>';document.getElementById('footer').innerHTML='';return;}
-  document.getElementById('items').innerHTML=cart.map((x,i)=>{
-    const quantity=Math.max(1,Number(x.quantity)||1), unitPrice=SmartCafeCommon.itemUnitPrice(x), extras=Array.isArray(x.extras)?x.extras:[];
-    return `<div class="item"><img src="${x.image||'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80'}" alt="${x.name}"><div><strong>${x.name}</strong><div class="muted">${x.size||'Regular'}</div>${extras.length?`<div class="options">Extras: ${extras.map(e=>e.name).join(', ')}</div>`:''}<div>₹${unitPrice.toFixed(2)} each</div></div><div><div class="qty"><button type="button" onclick="change(${i},-1)">−</button><span>${quantity}</span><button type="button" onclick="change(${i},1)">+</button></div><div style="font-weight:800;margin-top:7px;text-align:right">₹${(unitPrice*quantity).toFixed(2)}</div><button class="remove" type="button" onclick="removeItem(${i})">Remove</button></div></div>`;
-  }).join('');
-  document.getElementById('footer').innerHTML=`<div class="summary"><span>Total</span><span>₹${SmartCafeCommon.cartTotal(cart).toFixed(2)}</span></div><div class="note">Table ${SmartCafeCommon.getTable()} · Order will be saved in this browser for the prototype.</div><div class="actions"><a class="btn" href="menu.html">Add More</a><a class="btn primary" href="checkout.html">Proceed to Checkout</a></div>`;
-}
-function change(i,d){const cart=SmartCafeCommon.getCart();if(!cart[i])return;cart[i].quantity=Math.max(1,Math.min(10,Number(cart[i].quantity)||1+d));if(d<0)cart[i].quantity=Math.max(1,(Number(cart[i].quantity)||1)-1);else cart[i].quantity=Math.min(10,(Number(cart[i].quantity)||1)+1);SmartCafeCommon.setCart(cart);render()}
-function removeItem(i){const cart=SmartCafeCommon.getCart();cart.splice(i,1);SmartCafeCommon.setCart(cart);render()}
-render();
-</script>
-</body></html>
+    <div class="wrap">
+        <header class="top">
+            <div>
+                <a
+                    class="brand"
+                    href="../../index.html"
+                    aria-label="Return to SmartCafe main page"
+                >
+                    Smart<span>Cafe</span>
+                </a>
+
+                <div class="muted">
+                    Table <strong id="table"></strong>
+                </div>
+            </div>
+
+            <a class="back" href="menu.html">
+                Back to menu
+            </a>
+        </header>
+
+        <section class="card">
+            <h1>Your Cart</h1>
+            <div id="items"></div>
+            <div id="footer"></div>
+        </section>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/common.js"></script>
+
+    <script>
+        function render() {
+            const cart = SmartCafeCommon.getCart();
+
+            document.getElementById('table').textContent =
+                SmartCafeCommon.getTable();
+
+            if (!cart.length) {
+                document.getElementById('items').innerHTML = `
+                    <div class="empty">
+                        <h2>Your cart is empty</h2>
+                        <p class="muted">
+                            Add something from the menu.
+                        </p>
+                        <a
+                            class="btn primary"
+                            href="menu.html"
+                        >
+                            Browse Menu
+                        </a>
+                    </div>
+                `;
+
+                document.getElementById('footer').innerHTML = '';
+                return;
+            }
+
+            document.getElementById('items').innerHTML = cart
+                .map((x, i) => {
+                    const quantity = Math.max(
+                        1,
+                        Number(x.quantity) || 1
+                    );
+
+                    const unitPrice =
+                        SmartCafeCommon.itemUnitPrice(x);
+
+                    const extras = Array.isArray(x.extras)
+                        ? x.extras
+                        : [];
+
+                    return `
+                        <div class="item">
+                            <img
+                                src="${
+                                    x.image ||
+                                    'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80'
+                                }"
+                                alt="${x.name}"
+                            >
+
+                            <div>
+                                <strong>${x.name}</strong>
+
+                                <div class="muted">
+                                    ${x.size || 'Regular'}
+                                </div>
+
+                                ${
+                                    extras.length
+                                        ? `
+                                            <div class="options">
+                                                Extras:
+                                                ${extras
+                                                    .map(e => e.name)
+                                                    .join(', ')}
+                                            </div>
+                                        `
+                                        : ''
+                                }
+
+                                <div>
+                                    ₹${unitPrice.toFixed(2)} each
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="qty">
+                                    <button
+                                        type="button"
+                                        onclick="change(${i}, -1)"
+                                    >
+                                        −
+                                    </button>
+
+                                    <span>${quantity}</span>
+
+                                    <button
+                                        type="button"
+                                        onclick="change(${i}, 1)"
+                                    >
+                                        +
+                                    </button>
+                                </div>
+
+                                <div
+                                    style="font-weight:800;margin-top:7px;text-align:right"
+                                >
+                                    ₹${(unitPrice * quantity).toFixed(2)}
+                                </div>
+
+                                <button
+                                    class="remove"
+                                    type="button"
+                                    onclick="removeItem(${i})"
+                                >
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                })
+                .join('');
+
+            document.getElementById('footer').innerHTML = `
+                <div class="summary">
+                    <span>Total</span>
+                    <span>
+                        ₹${SmartCafeCommon.cartTotal(cart).toFixed(2)}
+                    </span>
+                </div>
+
+                <div class="note">
+                    Table ${SmartCafeCommon.getTable()} · Order will be saved in this browser for the prototype.
+                </div>
+
+                <div class="actions">
+                    <a class="btn" href="menu.html">
+                        Add More
+                    </a>
+
+                    <a
+                        class="btn primary"
+                        href="checkout.html"
+                    >
+                        Proceed to Checkout
+                    </a>
+                </div>
+            `;
+        }
+
+        function change(i, d) {
+            const cart = SmartCafeCommon.getCart();
+
+            if (!cart[i]) {
+                return;
+            }
+
+            if (d < 0) {
+                cart[i].quantity = Math.max(
+                    1,
+                    (Number(cart[i].quantity) || 1) - 1
+                );
+            } else {
+                cart[i].quantity = Math.min(
+                    10,
+                    (Number(cart[i].quantity) || 1) + 1
+                );
+            }
+
+            SmartCafeCommon.setCart(cart);
+            render();
+        }
+
+        function removeItem(i) {
+            const cart = SmartCafeCommon.getCart();
+
+            cart.splice(i, 1);
+            SmartCafeCommon.setCart(cart);
+            render();
+        }
+
+        render();
+    </script>
+</body>
+
+</html>
