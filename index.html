@@ -1,77 +1,616 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Cafe Management System — a frontend prototype for smart ordering, kitchen operations and cafe administration.">
+    <meta
+        name="description"
+        content="Cafe Management System — a frontend prototype for smart ordering, kitchen operations and cafe administration."
+    >
+
     <title>Cafe Management System</title>
-    <link rel="stylesheet" href="Smart%20Cafe%20Management%20System/customer/css/style.css">
+
+    <link
+        rel="stylesheet"
+        href="Smart%20Cafe%20Management%20System/customer/css/style.css"
+    >
+
     <style>
-        :root { --navy:#101b2d; --navy-soft:#1b2940; --cream:#f8f4ec; --paper:#fffdf8; --amber:#e58b2a; --amber-dark:#bd6814; --ink:#172033; --muted:#6d7480; --line:#e6e0d5; }
-        * { box-sizing:border-box; }
-        body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--ink); background:var(--cream); }
-        a { color:inherit; text-decoration:none; } button,input { font:inherit; }
-        .landing { min-height:100vh; display:flex; flex-direction:column; }
-        .landing-header { display:flex; justify-content:space-between; align-items:center; padding:22px 6%; background:var(--navy); color:white; }
-        .brand { font-weight:800; font-size:22px; letter-spacing:-.4px; } .brand span { color:#f3a34c; }
-        .hero { flex:1; display:grid; grid-template-columns:1.05fr .95fr; gap:50px; align-items:center; padding:70px 8%; max-width:1400px; width:100%; margin:auto; }
-        .eyebrow { color:var(--amber-dark); font-size:12px; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin:0 0 14px; }
-        h1 { font-size:clamp(48px,7vw,88px); line-height:.95; letter-spacing:-4px; margin:0 0 25px; color:var(--navy); }
-        .hero-copy { max-width:590px; font-size:19px; line-height:1.7; color:var(--muted); margin-bottom:32px; }
-        .actions { display:flex; gap:12px; flex-wrap:wrap; } .btn { border:0; border-radius:10px; padding:14px 20px; font-weight:800; cursor:pointer; transition:transform .15s,box-shadow .15s; }
-        .btn:hover { transform:translateY(-2px); box-shadow:0 8px 22px rgba(16,27,45,.14); } .btn-primary { background:var(--amber); color:white; } .btn-secondary { background:white; color:var(--navy); border:1px solid var(--line); }
-        .visual { background:var(--navy); border-radius:28px; min-height:450px; padding:26px; color:white; position:relative; overflow:hidden; box-shadow:0 25px 70px rgba(16,27,45,.18); }
-        .visual::before { content:""; position:absolute; width:260px; height:260px; border-radius:50%; background:rgba(229,139,42,.22); right:-80px; top:-80px; }
-        .visual-top { display:flex; justify-content:space-between; align-items:center; position:relative; z-index:1; } .visual-label { font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:#aeb9ca; } .live { color:#b7e3c0; font-size:12px; }
-        .order-preview { background:var(--paper); color:var(--ink); border-radius:18px; margin-top:70px; padding:25px; position:relative; z-index:1; } .order-preview h2 { margin:0 0 6px; font-size:24px; } .order-preview p { color:var(--muted); margin:0 0 22px; }
-        .preview-row { display:flex; justify-content:space-between; padding:13px 0; border-top:1px solid var(--line); } .preview-total { display:flex; justify-content:space-between; font-weight:800; margin-top:12px; padding-top:16px; border-top:2px solid var(--navy); }
-        .footer-note { text-align:center; padding:18px; color:#858b94; font-size:12px; border-top:1px solid var(--line); }
-        .modal { position:fixed; inset:0; background:rgba(7,14,25,.68); display:none; align-items:center; justify-content:center; padding:20px; z-index:20; } .modal.open { display:flex; }
-        .login-box { width:min(470px,100%); background:white; border-radius:20px; padding:30px; box-shadow:0 25px 80px rgba(0,0,0,.25); } .login-box h2 { margin:0 0 7px; font-size:30px; } .login-box>p { color:var(--muted); margin:0 0 24px; }
-        .roles { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:18px; } .role { border:1px solid var(--line); background:#fff; border-radius:10px; padding:12px 7px; cursor:pointer; font-size:12px; font-weight:700; } .role.active { border-color:var(--amber); background:#fff7ec; color:var(--amber-dark); }
-        .field { margin-bottom:13px; } .field label { display:block; font-size:12px; font-weight:800; margin-bottom:6px; } .field input { width:100%; padding:13px; border:1px solid var(--line); border-radius:9px; outline:none; } .field input:focus { border-color:var(--amber); }
-        .login-actions { display:flex; gap:10px; margin-top:20px; } .login-actions .btn { flex:1; } .hint { margin-top:16px; padding:12px; border-radius:10px; background:#f5f6f8; color:var(--muted); font-size:12px; line-height:1.5; }
-        @media (max-width:850px) { .hero { grid-template-columns:1fr; padding:48px 6%; } .visual { min-height:360px; } h1 { letter-spacing:-2px; } }
-        @media (max-width:520px) { .landing-header { padding:18px 5%; } .roles { grid-template-columns:1fr; } .login-actions { flex-direction:column; } }
+        :root {
+            --navy: #101b2d;
+            --navy-soft: #1b2940;
+            --cream: #f8f4ec;
+            --paper: #fffdf8;
+            --amber: #e58b2a;
+            --amber-dark: #bd6814;
+            --ink: #172033;
+            --muted: #6d7480;
+            --line: #e6e0d5;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--ink);
+            background: var(--cream);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        .landing {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .landing-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 6%;
+            background: var(--navy);
+            color: white;
+        }
+
+        .brand {
+            font-weight: 800;
+            font-size: 22px;
+            letter-spacing: -0.4px;
+        }
+
+        .brand span {
+            color: #f3a34c;
+        }
+
+        .hero {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 50px;
+            align-items: center;
+            padding: 70px 8%;
+            max-width: 1400px;
+            width: 100%;
+            margin: auto;
+        }
+
+        .eyebrow {
+            color: var(--amber-dark);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0 0 14px;
+        }
+
+        h1 {
+            font-size: clamp(48px, 7vw, 88px);
+            line-height: 0.95;
+            letter-spacing: -4px;
+            margin: 0 0 25px;
+            color: var(--navy);
+        }
+
+        .hero-copy {
+            max-width: 590px;
+            font-size: 19px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin-bottom: 32px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border: 0;
+            border-radius: 10px;
+            padding: 14px 20px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(16, 27, 45, 0.14);
+        }
+
+        .btn-primary {
+            background: var(--amber);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--navy);
+            border: 1px solid var(--line);
+        }
+
+        .visual {
+            background: var(--navy);
+            border-radius: 28px;
+            min-height: 450px;
+            padding: 26px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 70px rgba(16, 27, 45, 0.18);
+        }
+
+        .visual::before {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: rgba(229, 139, 42, 0.22);
+            right: -80px;
+            top: -80px;
+        }
+
+        .visual-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .visual-label {
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #aeb9ca;
+        }
+
+        .live {
+            color: #b7e3c0;
+            font-size: 12px;
+        }
+
+        .order-preview {
+            background: var(--paper);
+            color: var(--ink);
+            border-radius: 18px;
+            margin-top: 70px;
+            padding: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .order-preview h2 {
+            margin: 0 0 6px;
+            font-size: 24px;
+        }
+
+        .order-preview p {
+            color: var(--muted);
+            margin: 0 0 22px;
+        }
+
+        .preview-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 13px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .preview-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 800;
+            margin-top: 12px;
+            padding-top: 16px;
+            border-top: 2px solid var(--navy);
+        }
+
+        .footer-note {
+            text-align: center;
+            padding: 18px;
+            color: #858b94;
+            font-size: 12px;
+            border-top: 1px solid var(--line);
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(7, 14, 25, 0.68);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 20;
+        }
+
+        .modal.open {
+            display: flex;
+        }
+
+        .login-box {
+            width: min(470px, 100%);
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25);
+        }
+
+        .login-box h2 {
+            margin: 0 0 7px;
+            font-size: 30px;
+        }
+
+        .login-box > p {
+            color: var(--muted);
+            margin: 0 0 24px;
+        }
+
+        .roles {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .role {
+            border: 1px solid var(--line);
+            background: #fff;
+            border-radius: 10px;
+            padding: 12px 7px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .role.active {
+            border-color: var(--amber);
+            background: #fff7ec;
+            color: var(--amber-dark);
+        }
+
+        .field {
+            margin-bottom: 13px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .field input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid var(--line);
+            border-radius: 9px;
+            outline: none;
+        }
+
+        .field input:focus {
+            border-color: var(--amber);
+        }
+
+        .login-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .login-actions .btn {
+            flex: 1;
+        }
+
+        .hint {
+            margin-top: 16px;
+            padding: 12px;
+            border-radius: 10px;
+            background: #f5f6f8;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 850px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 48px 6%;
+            }
+
+            .visual {
+                min-height: 360px;
+            }
+
+            h1 {
+                letter-spacing: -2px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .landing-header {
+                padding: 18px 5%;
+            }
+
+            .roles {
+                grid-template-columns: 1fr;
+            }
+
+            .login-actions {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
+
 <body>
-<div class="landing">
-    <header class="landing-header">
-        <div class="brand">Cafe <span>Management System</span></div>
-    </header>
-    <main class="hero">
-        <section>
-            <h1>Smart ordering.<br>Faster service.</h1>
-            <p class="hero-copy">A complete cafe workflow designed around the table — browse the menu, customize your order, send it to the kitchen and track progress without the waiting.</p>
-            <div class="actions"><button class="btn btn-primary" onclick="continueAsCustomer()">Order Now</button><button class="btn btn-secondary" onclick="openLogin()">Staff Login</button></div>
-        </section>
-        <aside class="visual" aria-label="Cafe Management System order preview">
-            <div class="visual-top"><span class="visual-label">Live order preview</span><span class="live">System active</span></div>
-            <div class="order-preview"><h2>Table 04</h2><p>Order #SC1025 · Preparing</p><div class="preview-row"><span>Cappuccino × 2</span><strong>₹280</strong></div><div class="preview-row"><span>Veg Sandwich × 1</span><strong>₹150</strong></div><div class="preview-row"><span>French Fries × 1</span><strong>₹120</strong></div><div class="preview-total"><span>Total</span><span>₹550</span></div></div>
-        </aside>
-    </main>
-    <div class="footer-note">Customer · Kitchen · Admin — one connected cafe workflow, simulated entirely in the browser.</div>
-</div>
-<div class="modal" id="loginModal" aria-hidden="true">
-    <div class="login-box" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
-        <h2 id="loginTitle">Staff access</h2><p>Choose a staff role to continue.</p>
-        <div class="roles"><button class="role" data-role="kitchen" onclick="selectRole('kitchen')">Kitchen Staff</button><button class="role" data-role="admin" onclick="selectRole('admin')">Admin / Owner</button></div>
-        <div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="email" placeholder="staff@cafemanagement.com"></div>
-        <div class="field"><label for="password">Password</label><input id="password" type="password" placeholder="1234"></div>
-        <div class="login-actions"><button class="btn btn-secondary" onclick="closeLogin()">Cancel</button><button class="btn btn-primary" onclick="login()">Continue</button></div>
-        <div class="hint">Staff credentials: kitchen@smartcafe.com or admin@smartcafe.com — password <strong>1234</strong>.</div>
+    <div class="landing">
+        <header class="landing-header">
+            <div class="brand">
+                Cafe <span>Management System</span>
+            </div>
+        </header>
+
+        <main class="hero">
+            <section>
+                <h1>
+                    Smart ordering.<br>
+                    Faster service.
+                </h1>
+
+                <p class="hero-copy">
+                    A complete cafe workflow designed around the table — browse the menu,
+                    customize your order, send it to the kitchen and track progress without the waiting.
+                </p>
+
+                <div class="actions">
+                    <button
+                        class="btn btn-primary"
+                        onclick="continueAsCustomer()"
+                    >
+                        Order Now
+                    </button>
+
+                    <button
+                        class="btn btn-secondary"
+                        onclick="openLogin()"
+                    >
+                        Staff Login
+                    </button>
+                </div>
+            </section>
+
+            <aside
+                class="visual"
+                aria-label="Cafe Management System order preview"
+            >
+                <div class="visual-top">
+                    <span class="visual-label">
+                        Live order preview
+                    </span>
+
+                    <span class="live">
+                        System active
+                    </span>
+                </div>
+
+                <div class="order-preview">
+                    <h2>Table 04</h2>
+                    <p>Order #SC1025 · Preparing</p>
+
+                    <div class="preview-row">
+                        <span>Cappuccino × 2</span>
+                        <strong>₹280</strong>
+                    </div>
+
+                    <div class="preview-row">
+                        <span>Veg Sandwich × 1</span>
+                        <strong>₹150</strong>
+                    </div>
+
+                    <div class="preview-row">
+                        <span>French Fries × 1</span>
+                        <strong>₹120</strong>
+                    </div>
+
+                    <div class="preview-total">
+                        <span>Total</span>
+                        <span>₹550</span>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <div class="footer-note">
+            Customer · Kitchen · Admin — one connected cafe workflow, simulated entirely in the browser.
+        </div>
     </div>
-</div>
-<script>
-    const roles={kitchen:{email:'kitchen@smartcafe.com',path:'Smart Cafe Management System/kitchen.html'},admin:{email:'admin@smartcafe.com',path:'Smart Cafe Management System/admin/index.html'}};
-    let selectedRole='kitchen';
-    function continueAsCustomer(){localStorage.setItem('smartCafeRole','customer');localStorage.setItem('smartCafeTable',localStorage.getItem('smartCafeTable')||'04');window.location.href='Smart Cafe Management System/customer/index.html?table='+encodeURIComponent(localStorage.getItem('smartCafeTable'));}
-    function openLogin(){document.getElementById('loginModal').classList.add('open');document.getElementById('loginModal').setAttribute('aria-hidden','false');selectRole('kitchen');}
-    function closeLogin(){document.getElementById('loginModal').classList.remove('open');document.getElementById('loginModal').setAttribute('aria-hidden','true');}
-    function selectRole(role){selectedRole=role;document.querySelectorAll('.role').forEach(button=>button.classList.toggle('active',button.dataset.role===role));document.getElementById('email').value=roles[role].email;document.getElementById('password').value='1234';}
-    function login(){const email=document.getElementById('email').value.trim().toLowerCase();const password=document.getElementById('password').value;if(email!==roles[selectedRole].email||password!=='1234'){alert('Staff login failed. Please use the staff credentials shown below the form.');return;}localStorage.setItem('smartCafeRole',selectedRole);window.location.href=roles[selectedRole].path;}
-    document.getElementById('loginModal').addEventListener('click',event=>{if(event.target.id==='loginModal')closeLogin();});
-</script>
+
+    <div
+        class="modal"
+        id="loginModal"
+        aria-hidden="true"
+    >
+        <div
+            class="login-box"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="loginTitle"
+        >
+            <h2 id="loginTitle">Staff access</h2>
+            <p>Choose a staff role to continue.</p>
+
+            <div class="roles">
+                <button
+                    class="role"
+                    data-role="kitchen"
+                    onclick="selectRole('kitchen')"
+                >
+                    Kitchen Staff
+                </button>
+
+                <button
+                    class="role"
+                    data-role="admin"
+                    onclick="selectRole('admin')"
+                >
+                    Admin / Owner
+                </button>
+            </div>
+
+            <div class="field">
+                <label for="email">Email</label>
+                <input
+                    id="email"
+                    type="email"
+                    autocomplete="email"
+                    placeholder="staff@cafemanagement.com"
+                >
+            </div>
+
+            <div class="field">
+                <label for="password">Password</label>
+                <input
+                    id="password"
+                    type="password"
+                    placeholder="1234"
+                >
+            </div>
+
+            <div class="login-actions">
+                <button
+                    class="btn btn-secondary"
+                    onclick="closeLogin()"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    class="btn btn-primary"
+                    onclick="login()"
+                >
+                    Continue
+                </button>
+            </div>
+
+            <div class="hint">
+                Staff credentials: kitchen@smartcafe.com or admin@smartcafe.com — password
+                <strong>1234</strong>.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const roles = {
+            kitchen: {
+                email: 'kitchen@smartcafe.com',
+                path: 'Smart Cafe Management System/kitchen.html'
+            },
+            admin: {
+                email: 'admin@smartcafe.com',
+                path: 'Smart Cafe Management System/admin/index.html'
+            }
+        };
+
+        let selectedRole = 'kitchen';
+
+        function continueAsCustomer() {
+            localStorage.setItem('smartCafeRole', 'customer');
+            localStorage.setItem(
+                'smartCafeTable',
+                localStorage.getItem('smartCafeTable') || '04'
+            );
+
+            window.location.href =
+                'Smart Cafe Management System/customer/index.html?table=' +
+                encodeURIComponent(localStorage.getItem('smartCafeTable'));
+        }
+
+        function openLogin() {
+            document
+                .getElementById('loginModal')
+                .classList.add('open');
+
+            document
+                .getElementById('loginModal')
+                .setAttribute('aria-hidden', 'false');
+
+            selectRole('kitchen');
+        }
+
+        function closeLogin() {
+            document
+                .getElementById('loginModal')
+                .classList.remove('open');
+
+            document
+                .getElementById('loginModal')
+                .setAttribute('aria-hidden', 'true');
+        }
+
+        function selectRole(role) {
+            selectedRole = role;
+
+            document
+                .querySelectorAll('.role')
+                .forEach(button => {
+                    button.classList.toggle(
+                        'active',
+                        button.dataset.role === role
+                    );
+                });
+
+            document.getElementById('email').value = roles[role].email;
+            document.getElementById('password').value = '1234';
+        }
+
+        function login() {
+            const email = document
+                .getElementById('email')
+                .value
+                .trim()
+                .toLowerCase();
+
+            const password = document.getElementById('password').value;
+
+            if (
+                email !== roles[selectedRole].email ||
+                password !== '1234'
+            ) {
+                alert(
+                    'Staff login failed. Please use the staff credentials shown below the form.'
+                );
+                return;
+            }
+
+            localStorage.setItem('smartCafeRole', selectedRole);
+            window.location.href = roles[selectedRole].path;
+        }
+
+        document
+            .getElementById('loginModal')
+            .addEventListener('click', event => {
+                if (event.target.id === 'loginModal') {
+                    closeLogin();
+                }
+            });
+    </script>
 </body>
+
 </html>
