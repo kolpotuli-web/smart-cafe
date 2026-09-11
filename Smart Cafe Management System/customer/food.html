@@ -1,38 +1,541 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SmartCafe | Customize</title>
-<link rel="stylesheet" href="css/style.css">
-<style>
-body{margin:0;background:#faf7f1;color:#18243a;font-family:Arial,sans-serif}.wrap{max-width:850px;margin:auto;padding:28px 20px}.top{display:flex;justify-content:space-between;align-items:center}.brand{font-size:25px;font-weight:800;text-decoration:none;color:#18243a}.brand span{color:#e88924}.back{color:#18243a;text-decoration:none;font-weight:700}.card{margin-top:20px;background:#fff;border:1px solid #e5ded2;border-radius:20px;overflow:hidden}.hero{height:300px;background:#eee}.hero img{width:100%;height:100%;object-fit:cover}.body{padding:25px}.eyebrow{color:#b96516;font-size:12px;font-weight:800;letter-spacing:1.8px}.desc{color:#697386;line-height:1.6}.section{border-top:1px solid #eee7dd;padding-top:20px;margin-top:22px}.section h3{margin:0 0 12px}.options{display:grid;gap:9px}.option{display:flex;justify-content:space-between;align-items:center;padding:14px;border:1px solid #ddd4c7;border-radius:10px;cursor:pointer;background:#fff}.option:hover{border-color:#c8b49d;background:#fffaf3}.option input{margin-right:8px}.option strong{white-space:nowrap}.qty{display:flex;align-items:center;gap:12px}.qty button{width:34px;height:34px;border:1px solid #ddd4c7;background:#fff;border-radius:9px;cursor:pointer}.total{display:flex;justify-content:space-between;font-size:22px;font-weight:800;margin:24px 0}.add{width:100%;padding:14px;border:0;border-radius:11px;background:#e88924;color:#fff;font-weight:800;cursor:pointer}.muted{color:#697386}.error{color:#b64b35;font-size:14px;min-height:18px}@media(max-width:600px){.hero{height:230px}.body{padding:20px}}
-</style>
+    <meta charset="utf-8">
+    <meta
+        name="viewport"
+        content="width=device-width,initial-scale=1"
+    >
+
+    <title>SmartCafe | Customize</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        body {
+            margin: 0;
+            background: #faf7f1;
+            color: #18243a;
+            font-family: Arial, sans-serif;
+        }
+
+        .wrap {
+            max-width: 850px;
+            margin: auto;
+            padding: 28px 20px;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 25px;
+            font-weight: 800;
+            text-decoration: none;
+            color: #18243a;
+        }
+
+        .brand span {
+            color: #e88924;
+        }
+
+        .back {
+            color: #18243a;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .card {
+            margin-top: 20px;
+            background: #fff;
+            border: 1px solid #e5ded2;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .hero {
+            height: 300px;
+            background: #eee;
+        }
+
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .body {
+            padding: 25px;
+        }
+
+        .eyebrow {
+            color: #b96516;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.8px;
+        }
+
+        .desc {
+            color: #697386;
+            line-height: 1.6;
+        }
+
+        .section {
+            border-top: 1px solid #eee7dd;
+            padding-top: 20px;
+            margin-top: 22px;
+        }
+
+        .section h3 {
+            margin: 0 0 12px;
+        }
+
+        .options {
+            display: grid;
+            gap: 9px;
+        }
+
+        .option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px;
+            border: 1px solid #ddd4c7;
+            border-radius: 10px;
+            cursor: pointer;
+            background: #fff;
+        }
+
+        .option:hover {
+            border-color: #c8b49d;
+            background: #fffaf3;
+        }
+
+        .option input {
+            margin-right: 8px;
+        }
+
+        .option strong {
+            white-space: nowrap;
+        }
+
+        .qty {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .qty button {
+            width: 34px;
+            height: 34px;
+            border: 1px solid #ddd4c7;
+            background: #fff;
+            border-radius: 9px;
+            cursor: pointer;
+        }
+
+        .total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 22px;
+            font-weight: 800;
+            margin: 24px 0;
+        }
+
+        .add {
+            width: 100%;
+            padding: 14px;
+            border: 0;
+            border-radius: 11px;
+            background: #e88924;
+            color: #fff;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .muted {
+            color: #697386;
+        }
+
+        .error {
+            color: #b64b35;
+            font-size: 14px;
+            min-height: 18px;
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                height: 230px;
+            }
+
+            .body {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<div class="wrap">
-<header class="top"><a class="back" href="menu.html">Back to menu</a><a class="brand" href="../../index.html" aria-label="Return to SmartCafe main page">Smart<span>Cafe</span></a></header>
-<div id="app" class="card"></div>
-</div>
-<script src="js/data.js?v=20260910-1"></script>
-<script src="js/common.js?v=20260910-1"></script>
-<script>
-const params=new URLSearchParams(location.search);
-const itemId=params.get('id');
-const item=SmartCafeData.menu.find(x=>String(x.id)===String(itemId));
-let quantity=1;
-function imageFor(){return item&&item.image?item.image:'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=80'}
-function number(value){const n=Number(value);return Number.isFinite(n)?n:0}
-function optionValue(option){return Array.isArray(option)?{name:String(option[0]),price:number(option[1])}:{name:String(option&&option.name||''),price:number(option&&option.price)}}
-function getSizes(){return item&&Array.isArray(item.sizes)&&item.sizes.length?item.sizes.map(optionValue):[{name:'Regular',price:0}]}
-function getExtras(){return item&&Array.isArray(item.extras)?item.extras.map(optionValue).filter(x=>x.name):[]}
-function selectedSize(){return document.querySelector('input[name="size"]:checked')?.value||getSizes()[0].name}
-function selectedSizeCharge(){const selected=document.querySelector('input[name="size"]:checked');return selected?number(selected.dataset.price):0}
-function unitPrice(){if(!item)return 0;let price=number(item.price)+selectedSizeCharge();document.querySelectorAll('input[data-extra-price]:checked').forEach(x=>price+=number(x.dataset.extraPrice));return price}
-function updateTotal(){const total=document.getElementById('total');if(total)total.textContent='₹'+(unitPrice()*quantity).toFixed(2)}
-function changeQty(delta){quantity=Math.max(1,Math.min(10,quantity+delta));document.getElementById('qty').textContent=quantity;updateTotal()}
-function addToCart(){if(!item)return;const extras=[...document.querySelectorAll('input[data-extra-price]:checked')].map(x=>({name:x.dataset.name,price:number(x.dataset.extraPrice)}));const cart=SmartCafeCommon.getCart();cart.push({cartId:Date.now(),id:item.id,name:item.name,price:number(item.price),image:item.image||'',size:selectedSize(),extras,instructions:document.getElementById('instructions').value.trim(),quantity});SmartCafeCommon.setCart(cart);location.href='cart.html'}
-function renderOptions(){const sizes=getSizes(),extras=getExtras();const sizeHtml=sizes.map((s,index)=>`<label class="option"><span><input type="radio" name="size" value="${s.name}" data-price="${s.price}" ${index===0?'checked':''}> ${s.name}</span><strong>${s.price>0?'+₹'+s.price.toFixed(2):'+₹0.00'}</strong></label>`).join('');const extraHtml=extras.length?extras.map(e=>`<label class="option"><span><input type="checkbox" data-name="${e.name}" data-extra-price="${e.price}"> ${e.name}</span><strong>+₹${e.price.toFixed(2)}</strong></label>`).join(''):'<p class="muted">No additional extras are available for this item.</p>';return `<div class="section"><h3>Choose size</h3><div class="options">${sizeHtml}</div></div><div class="section"><h3>Extras</h3><div class="options">${extraHtml}</div></div>`}
-if(!item){document.getElementById('app').innerHTML='<div class="body"><h1>Food item not found</h1><p class="muted">The selected menu item is unavailable.</p><a href="menu.html">Return to menu</a></div>'}else{document.getElementById('app').innerHTML=`<div class="hero"><img src="${imageFor()}" alt="${item.name}"></div><div class="body"><div class="eyebrow">${item.category}</div><h1>${item.name}</h1><p class="desc">${item.description}</p>${renderOptions()}<div class="section"><h3>Special instructions</h3><textarea id="instructions" rows="4" style="width:100%;box-sizing:border-box;padding:12px;border:1px solid #ddd4c7;border-radius:10px;font:inherit" placeholder="Less spicy, no onions, etc."></textarea></div><div class="section"><h3>Quantity</h3><div class="qty"><button type="button" onclick="changeQty(-1)" aria-label="Decrease quantity">−</button><strong id="qty">1</strong><button type="button" onclick="changeQty(1)" aria-label="Increase quantity">+</button></div></div><div class="total"><span>Total</span><span id="total">₹${number(item.price).toFixed(2)}</span></div><p class="error" id="error"></p><button class="add" type="button" onclick="addToCart()">Add to Cart</button></div>`;document.querySelectorAll('input[name="size"],input[data-extra-price]').forEach(x=>x.addEventListener('change',updateTotal));updateTotal()}
-</script>
+    <div class="wrap">
+        <header class="top">
+            <a class="back" href="menu.html">
+                Back to menu
+            </a>
+
+            <a
+                class="brand"
+                href="../../index.html"
+                aria-label="Return to SmartCafe main page"
+            >
+                Smart<span>Cafe</span>
+            </a>
+        </header>
+
+        <div
+            id="app"
+            class="card"
+        ></div>
+    </div>
+
+    <script src="js/data.js?v=20260910-1"></script>
+    <script src="js/common.js?v=20260910-1"></script>
+
+    <script>
+        const params = new URLSearchParams(location.search);
+        const itemId = params.get('id');
+
+        const item = SmartCafeData.menu.find(
+            x => String(x.id) === String(itemId)
+        );
+
+        let quantity = 1;
+
+        function imageFor() {
+            return item && item.image
+                ? item.image
+                : 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=80';
+        }
+
+        function number(value) {
+            const n = Number(value);
+            return Number.isFinite(n) ? n : 0;
+        }
+
+        function optionValue(option) {
+            return Array.isArray(option)
+                ? {
+                    name: String(option[0]),
+                    price: number(option[1])
+                }
+                : {
+                    name: String(
+                        option && option.name || ''
+                    ),
+                    price: number(
+                        option && option.price
+                    )
+                };
+        }
+
+        function getSizes() {
+            return item &&
+                Array.isArray(item.sizes) &&
+                item.sizes.length
+                ? item.sizes.map(optionValue)
+                : [
+                    {
+                        name: 'Regular',
+                        price: 0
+                    }
+                ];
+        }
+
+        function getExtras() {
+            return item && Array.isArray(item.extras)
+                ? item.extras
+                    .map(optionValue)
+                    .filter(x => x.name)
+                : [];
+        }
+
+        function selectedSize() {
+            return (
+                document.querySelector(
+                    'input[name="size"]:checked'
+                )?.value ||
+                getSizes()[0].name
+            );
+        }
+
+        function selectedSizeCharge() {
+            const selected = document.querySelector(
+                'input[name="size"]:checked'
+            );
+
+            return selected
+                ? number(selected.dataset.price)
+                : 0;
+        }
+
+        function unitPrice() {
+            if (!item) {
+                return 0;
+            }
+
+            let price =
+                number(item.price) +
+                selectedSizeCharge();
+
+            document
+                .querySelectorAll(
+                    'input[data-extra-price]:checked'
+                )
+                .forEach(x => {
+                    price += number(x.dataset.extraPrice);
+                });
+
+            return price;
+        }
+
+        function updateTotal() {
+            const total = document.getElementById('total');
+
+            if (total) {
+                total.textContent =
+                    '₹' +
+                    (unitPrice() * quantity).toFixed(2);
+            }
+        }
+
+        function changeQty(delta) {
+            quantity = Math.max(
+                1,
+                Math.min(10, quantity + delta)
+            );
+
+            document.getElementById('qty').textContent =
+                quantity;
+
+            updateTotal();
+        }
+
+        function addToCart() {
+            if (!item) {
+                return;
+            }
+
+            const extras = [
+                ...document.querySelectorAll(
+                    'input[data-extra-price]:checked'
+                )
+            ].map(x => ({
+                name: x.dataset.name,
+                price: number(x.dataset.extraPrice)
+            }));
+
+            const cart = SmartCafeCommon.getCart();
+
+            cart.push({
+                cartId: Date.now(),
+                id: item.id,
+                name: item.name,
+                price: number(item.price),
+                image: item.image || '',
+                size: selectedSize(),
+                extras,
+                instructions: document
+                    .getElementById('instructions')
+                    .value
+                    .trim(),
+                quantity
+            });
+
+            SmartCafeCommon.setCart(cart);
+            location.href = 'cart.html';
+        }
+
+        function renderOptions() {
+            const sizes = getSizes();
+            const extras = getExtras();
+
+            const sizeHtml = sizes
+                .map(
+                    (s, index) => `
+                        <label class="option">
+                            <span>
+                                <input
+                                    type="radio"
+                                    name="size"
+                                    value="${s.name}"
+                                    data-price="${s.price}"
+                                    ${index === 0 ? 'checked' : ''}
+                                >
+                                ${s.name}
+                            </span>
+
+                            <strong>
+                                ${
+                                    s.price > 0
+                                        ? '+₹' + s.price.toFixed(2)
+                                        : '+₹0.00'
+                                }
+                            </strong>
+                        </label>
+                    `
+                )
+                .join('');
+
+            const extraHtml = extras.length
+                ? extras
+                    .map(
+                        e => `
+                            <label class="option">
+                                <span>
+                                    <input
+                                        type="checkbox"
+                                        data-name="${e.name}"
+                                        data-extra-price="${e.price}"
+                                    >
+                                    ${e.name}
+                                </span>
+
+                                <strong>
+                                    +₹${e.price.toFixed(2)}
+                                </strong>
+                            </label>
+                        `
+                    )
+                    .join('')
+                : `
+                    <p class="muted">
+                        No additional extras are available for this item.
+                    </p>
+                `;
+
+            return `
+                <div class="section">
+                    <h3>Choose size</h3>
+                    <div class="options">
+                        ${sizeHtml}
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Extras</h3>
+                    <div class="options">
+                        ${extraHtml}
+                    </div>
+                </div>
+            `;
+        }
+
+        if (!item) {
+            document.getElementById('app').innerHTML = `
+                <div class="body">
+                    <h1>Food item not found</h1>
+                    <p class="muted">
+                        The selected menu item is unavailable.
+                    </p>
+                    <a href="menu.html">Return to menu</a>
+                </div>
+            `;
+        } else {
+            document.getElementById('app').innerHTML = `
+                <div class="hero">
+                    <img
+                        src="${imageFor()}"
+                        alt="${item.name}"
+                    >
+                </div>
+
+                <div class="body">
+                    <div class="eyebrow">
+                        ${item.category}
+                    </div>
+
+                    <h1>${item.name}</h1>
+
+                    <p class="desc">
+                        ${item.description}
+                    </p>
+
+                    ${renderOptions()}
+
+                    <div class="section">
+                        <h3>Special instructions</h3>
+
+                        <textarea
+                            id="instructions"
+                            rows="4"
+                            style="width:100%;box-sizing:border-box;padding:12px;border:1px solid #ddd4c7;border-radius:10px;font:inherit"
+                            placeholder="Less spicy, no onions, etc."
+                        ></textarea>
+                    </div>
+
+                    <div class="section">
+                        <h3>Quantity</h3>
+
+                        <div class="qty">
+                            <button
+                                type="button"
+                                onclick="changeQty(-1)"
+                                aria-label="Decrease quantity"
+                            >
+                                −
+                            </button>
+
+                            <strong id="qty">1</strong>
+
+                            <button
+                                type="button"
+                                onclick="changeQty(1)"
+                                aria-label="Increase quantity"
+                            >
+                                +
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="total">
+                        <span>Total</span>
+                        <span id="total">
+                            ₹${number(item.price).toFixed(2)}
+                        </span>
+                    </div>
+
+                    <p
+                        class="error"
+                        id="error"
+                    ></p>
+
+                    <button
+                        class="add"
+                        type="button"
+                        onclick="addToCart()"
+                    >
+                        Add to Cart
+                    </button>
+                </div>
+            `;
+
+            document
+                .querySelectorAll(
+                    'input[name="size"],input[data-extra-price]'
+                )
+                .forEach(x =>
+                    x.addEventListener(
+                        'change',
+                        updateTotal
+                    )
+                );
+
+            updateTotal();
+        }
+    </script>
 </body>
+
 </html>
